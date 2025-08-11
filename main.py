@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 class QueryRequest(BaseModel):
     question: str
-    k: Optional[int] = 3
+    k: Optional[int] = 4
     similarity_threshold: Optional[float] = 0.2
     include_sources: Optional[bool] = True # For Testing ON
 
@@ -48,7 +48,7 @@ async def query_endpoint(req: QueryRequest):
     try:
         result = await asyncio.to_thread(
             retriever.query,
-            q=req.question,
+            req.question,
             k=req.k,
             similarity_threshold=req.similarity_threshold,
             include_sources=req.include_sources
