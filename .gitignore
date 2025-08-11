@@ -1,2 +1,3 @@
 documents/*.pdf
 .env
+__pycache__/retriever.cpython-312.pyc

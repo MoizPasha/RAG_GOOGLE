@@ -209,22 +209,22 @@ class GoogleRAGRetriever:
             "embedding_dimension": self.embedding_dimension
         }
 
-if __name__ == "__main__":
-    # Example usage
-    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    CONNECTION_STRING = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:5432/{os.getenv('DB_NAME')}"
+# if __name__ == "__main__":
+#     # Example usage
+#     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+#     CONNECTION_STRING = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:5432/{os.getenv('DB_NAME')}"
     
-    retriever = GoogleRAGRetriever(
-    connection_string=CONNECTION_STRING,
-    google_api_key=GOOGLE_API_KEY,
-    collection_name="faq_embeddings",
-    llm_model=os.getenv("GOOGLE_LLM_MODEL") or "models/gemini-2.0-flash"
-    )
+#     retriever = GoogleRAGRetriever(
+#     connection_string=CONNECTION_STRING,
+#     google_api_key=GOOGLE_API_KEY,
+#     collection_name="faq_embeddings",
+#     llm_model=os.getenv("GOOGLE_LLM_MODEL") or "models/gemini-2.0-flash"
+#     )
 
-    print("Collection stats:", retriever.get_collection_stats())
-    while (q := input("Enter your question (or 'exit' to quit): ")) != "exit":
-        if q.strip() == "":
-            print("Exiting...")
-            break
-        ans = retriever.query(q, k=4, similarity_threshold=0.2, include_sources=True)
-        print(ans["answer"])
+#     print("Collection stats:", retriever.get_collection_stats())
+#     while (q := input("Enter your question (or 'exit' to quit): ")) != "exit":
+#         if q.strip() == "":
+#             print("Exiting...")
+#             break
+#         ans = retriever.query(q, k=4, similarity_threshold=0.2, include_sources=True)
+#         print(ans["answer"])
